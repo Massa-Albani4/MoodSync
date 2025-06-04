@@ -47,7 +47,7 @@ export default function MoodSync() {
         </div>
 
         {/* Mood Selector */}
-        <Card className="mb-8 shadow-lg border-gray-200">
+        <Card className="mb-8 shadow-lg border-[#CECECE]">
           <CardHeader>
             <CardTitle className="text-gray-900 text-center">
               Select Your Mood
@@ -62,7 +62,7 @@ export default function MoodSync() {
                   variant={selectedMood === mood.id ? "default" : "outline"}
                   className={`h-20 flex flex-col items-center justify-center gap-2 text-gray-900 font-semibold transition-all duration-200 hover:scale-105 ${
                     selectedMood === mood.id
-                      ? "bg-white text-gray-900 border-gray-900 border-2 ring-4 ring-gray-200 scale-105"
+                      ? "bg-white border-gray-500 ring-1 scale-105"
                       : "bg-white hover:bg-gray-50 border-gray-300"
                   }`}
                 >
@@ -78,8 +78,7 @@ export default function MoodSync() {
         <div className="text-center mb-8">
           <Button
             onClick={generatePlaylist}
-            disabled={!selectedMood}
-            className="bg-gray-900 hover:bg-gray-800 text-white font-bold py-3 px-6 text-lg rounded-lg transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+            className="bg-gray-900 text-white font-bold py-5 px-6 text-lg rounded-lg"
           >
             <Music className="mr-2 h-5 w-5" />
             Generate Playlist
