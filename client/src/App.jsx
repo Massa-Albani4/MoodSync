@@ -75,12 +75,12 @@ export default function MoodSync() {
         </Card>
 
         {/* Generate Playlist Button */}
-        <div className="text-center mb-8">
+        <div className="flex justify-center">
           <Button
             onClick={generatePlaylist}
-            className="bg-gray-900 text-white font-bold py-5 px-6 text-lg rounded-lg"
+            className="bg-gray-900 text-white py-5 px-6 text-lg rounded-md"
           >
-            <Music className="mr-2 h-5 w-5" />
+            <Music className="mr-1 h-5 w-5" />
             Generate Playlist
           </Button>
         </div>
