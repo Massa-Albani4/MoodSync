@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Play, Plus, X, Music } from "lucide-react";
 import { sampleSongs } from "./songs";
 
@@ -35,7 +34,7 @@ export default function MoodSync() {
 
   return (
     <div className="min-h-screen bg-white px-4 py-16">
-      <div className="max-w-6xl mx-auto flex items-center flex-col">
+      <div className="max-w-6xl mx-auto flex flex-col items-center">
         {/* Header */}
         <div className="text-center mb-11">
           <h1 className="text-5xl font-bold text-gray-900 mb-2 tracking-tight">
@@ -85,64 +84,57 @@ export default function MoodSync() {
           </Button>
         </div>
 
-        <div className="space-y-8">
-          {generatedPlaylist.length > 0 && (
-            <Card className="shadow-lg border-gray-200">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-gray-900 flex items-center">
-                    <Music className="mr-2 h-5 w-5" />
-                    Generated Songs
-                    <Badge variant="secondary" className="ml-2">
-                      {generatedPlaylist.length} songs
-                    </Badge>
-                  </CardTitle>
-                  <Button
-                    onClick={() => setPlaylistSongs([...generatedPlaylist])}
-                    className="bg-blue-600 hover:bg-blue-700 text-white"
-                    disabled={playlistSongs.length === generatedPlaylist.length}
-                  >
-                    <Plus className="mr-2 h-4 w-4" />
-                    Add All Songs
-                  </Button>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                {generatedPlaylist.map((song) => (
-                  <div
-                    key={song.id}
-                    className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors border border-gray-200"
-                  >
-                    <div className="flex-1">
-                      <h4 className="text-gray-900 font-medium">
-                        {song.title}
-                      </h4>
-                      <p className="text-gray-600 text-sm">{song.artist}</p>
-                    </div>
-                    <div className="flex items-center gap-2">
+        {generatedPlaylist.length > 0 && (
+          <Card className="shadow-lg border-[#CECECE] mt-8">
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-gray-900 flex items-center">
+                  <Music className="mr-2 h-5 w-5" />
+                  Generated Songs
+                </CardTitle>
+                <Button
+                  onClick={() => setPlaylistSongs([...generatedPlaylist])}
+                  className="bg-blue-600 hover:bg-blue-700 text-white"
+                  disabled={playlistSongs.length === generatedPlaylist.length}
+                >
+                  <Plus className="mr-2 h-4 w-4" />
+                  Add All Songs
+                </Button>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              {generatedPlaylist.map((song) => (
+                <div
+                  key={song.id}
+                  className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors border border-gray-200"
+                >
+                  <div className="flex-1">
+                    <h4 className="text-gray-900 font-medium">{song.title}</h4>
+                    <p className="text-gray-600 text-sm">{song.artist}</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      size="sm"
+                      onClick={() => window.open(song.spotifyUrl, "_blank")}
+                      className="bg-green-600 hover:bg-green-700 text-white"
+                    >
+                      <Play className="h-4 w-4" />
+                    </Button>
+                    {playlistSongs.some((s) => s.id === song.id) && (
                       <Button
                         size="sm"
-                        onClick={() => window.open(song.spotifyUrl, "_blank")}
-                        className="bg-green-600 hover:bg-green-700 text-white"
+                        onClick={() => removeSongFromPlaylist(song.id)}
+                        className="bg-red-600 hover:bg-red-700 text-white"
                       >
-                        <Play className="h-4 w-4" />
+                        <X className="h-4 w-4" />
                       </Button>
-                      {playlistSongs.some((s) => s.id === song.id) && (
-                        <Button
-                          size="sm"
-                          onClick={() => removeSongFromPlaylist(song.id)}
-                          className="bg-red-600 hover:bg-red-700 text-white"
-                        >
-                          <X className="h-4 w-4" />
-                        </Button>
-                      )}
-                    </div>
+                    )}
                   </div>
-                ))}
-              </CardContent>
-            </Card>
-          )}
-        </div>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        )}
       </div>
     </div>
   );
