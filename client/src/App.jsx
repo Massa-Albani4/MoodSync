@@ -5,14 +5,20 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Play, Plus, X, Music } from "lucide-react";
 import { sampleSongs } from "./songs";
+import chillIcon from "./assets/chill.png";
+import energeticIcon from "./assets/energetic.png";
+import happyIcon from "./assets/happy.png";
+import sadIcon from "./assets/sad.png";
+import wittyIcon from "./assets/witty.png";
+import mysteriousIcon from "./assets/mysterious.png";
 
 const moods = [
-  { id: "happy", label: "Happy", emoji: "😊" },
-  { id: "sad", label: "Sad", emoji: "😢" },
-  { id: "energetic", label: "Energetic", emoji: "⚡" },
-  { id: "chill", label: "Chill", emoji: "😌" },
-  { id: "witty", label: "Witty", emoji: "💕" },
-  { id: "mysterious", label: "Mysterious", emoji: "🎯" },
+  { id: "happy", label: "Happy", emoji: happyIcon },
+  { id: "sad", label: "Sad", emoji: sadIcon },
+  { id: "energetic", label: "Energetic", emoji: energeticIcon },
+  { id: "chill", label: "Chill", emoji: chillIcon },
+  { id: "witty", label: "Witty", emoji: wittyIcon },
+  { id: "mysterious", label: "Mysterious", emoji: mysteriousIcon },
 ];
 
 export default function MoodSync() {
@@ -61,11 +67,16 @@ export default function MoodSync() {
                   variant={selectedMood === mood.id ? "default" : "outline"}
                   className={`h-20 flex flex-col items-center justify-center gap-2 text-gray-900 font-semibold transition-all duration-200 hover:scale-105 ${
                     selectedMood === mood.id
-                      ? "bg-white border-gray-500 ring-1 scale-105"
-                      : "bg-white hover:bg-gray-50 border-gray-300"
+                      ? "bg-white border-[#FF8661] ring-1 ring-[#FF8661] scale-105"
+                      : "bg-white hover:bg-gray-50 border-[#b8b8b8]"
                   }`}
                 >
-                  <span className="text-2xl">{mood.emoji}</span>
+                  <span className="size-5">
+                    <img
+                      className="w-full h-full object-contain"
+                      src={mood.emoji}
+                    />
+                  </span>
                   <span className="text-sm">{mood.label}</span>
                 </Button>
               ))}
@@ -77,7 +88,7 @@ export default function MoodSync() {
         <div className="flex justify-center">
           <Button
             onClick={generatePlaylist}
-            className="bg-gray-900 text-white py-5 px-6 text-lg rounded-md"
+            className="bg-[hsla(333,_100%,_53%,_1)]  bg-[linear-gradient(90deg,_hsla(333,_100%,_53%,_1)_0%,_hsla(33,_94%,_57%,_1)_100%)] filter text-white py-5 px-6 text-lg rounded-md"
           >
             <Music className="mr-1 h-5 w-5" />
             Generate Playlist
