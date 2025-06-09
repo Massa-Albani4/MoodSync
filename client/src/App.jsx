@@ -107,11 +107,11 @@ export default function MoodSync() {
                 </CardTitle>
                 <Button
                   onClick={() => setPlaylistSongs([...generatedPlaylist])}
-                  className="bg-blue-600 hover:bg-blue-700 text-white"
+                  className="bg-white ring-1 ring-gray-900 text-gray-900 rounded-sm hover:bg-gray-200"
                   disabled={playlistSongs.length === generatedPlaylist.length}
                 >
-                  <Plus className="mr-2 h-4 w-4" />
-                  Add a song
+                  <Plus className="mr-1 h-4 w-4 text-gray-900" />
+                  Add song
                 </Button>
               </div>
             </CardHeader>
