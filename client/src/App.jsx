@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Play, Plus, Trash2, Music } from "lucide-react";
+import { Plus, Trash2, Music } from "lucide-react";
 import { sampleSongs } from "./songs";
 import chillIcon from "./assets/chill.png";
 import energeticIcon from "./assets/energetic.png";
@@ -11,6 +11,7 @@ import happyIcon from "./assets/happy.png";
 import sadIcon from "./assets/sad.png";
 import wittyIcon from "./assets/witty.png";
 import mysteriousIcon from "./assets/mysterious.png";
+import playIcon from "./assets/play.png";
 
 const moods = [
   { id: "happy", label: "Happy", emoji: happyIcon },
@@ -42,10 +43,10 @@ export default function MoodSync() {
 
   return (
     <div className="min-h-screen bg-white px-4 py-16">
-      <div className="max-w-6xl mx-auto flex flex-col items-center">
+      <div className="mx-auto flex max-w-6xl flex-col items-center">
         {/* Header */}
-        <div className="text-center mb-11">
-          <h1 className="text-5xl font-bold text-gray-900 mb-2 tracking-tight">
+        <div className="mb-11 text-center">
+          <h1 className="mb-2 text-5xl font-bold tracking-tight text-gray-900">
             MoodSync
           </h1>
           <p className="text-lg font-medium text-gray-600">
@@ -54,9 +55,9 @@ export default function MoodSync() {
         </div>
 
         {/* Mood Selector */}
-        <Card className="mb-8 shadow-lg border-[#CECECE]">
+        <Card className="mb-8 border-[#CECECE] shadow-lg">
           <CardHeader>
-            <CardTitle className="text-gray-900 text-center">
+            <CardTitle className="text-center text-gray-900">
               Select Your Mood
             </CardTitle>
           </CardHeader>
@@ -67,15 +68,15 @@ export default function MoodSync() {
                   key={mood.id}
                   onClick={() => setSelectedMood(mood.id)}
                   variant={selectedMood === mood.id ? "default" : "outline"}
-                  className={`h-20 flex flex-col items-center justify-center gap-2 text-gray-900 font-semibold transition-all duration-200 hover:scale-105 ${
+                  className={`flex h-20 flex-col items-center justify-center gap-2 font-semibold text-gray-900 transition-all duration-200 hover:scale-105 ${
                     selectedMood === mood.id
-                      ? "bg-white border-[#FF8661] ring-2 ring-[#FF8661] scale-105"
-                      : "bg-white hover:bg-gray-50 border-[#b8b8b8]"
+                      ? "scale-105 border-[#FF8661] bg-white ring-2 ring-[#FF8661]"
+                      : "border-[#b8b8b8] bg-white hover:bg-gray-50"
                   }`}
                 >
                   <span className="size-5">
                     <img
-                      className="w-full h-full object-contain"
+                      className="h-full w-full object-contain"
                       src={mood.emoji}
                     />
                   </span>
@@ -90,7 +91,7 @@ export default function MoodSync() {
         <div className="flex justify-center">
           <Button
             onClick={generatePlaylist}
-            className="bg-[hsla(333,_100%,_53%,_1)]  bg-[linear-gradient(90deg,_hsla(333,_100%,_53%,_1)_0%,_hsla(33,_94%,_57%,_1)_100%)] filter text-white py-5 px-6 text-lg rounded-md"
+            className="rounded-md bg-[hsla(333,_100%,_53%,_1)] bg-[linear-gradient(90deg,_hsla(333,_100%,_53%,_1)_0%,_hsla(33,_94%,_57%,_1)_100%)] px-6 py-5 text-lg text-white filter"
           >
             <Music className="mr-1 h-5 w-5" />
             Generate Playlist
@@ -98,16 +99,16 @@ export default function MoodSync() {
         </div>
 
         {generatedPlaylist.length > 0 && (
-          <Card className="shadow-lg border-[#CECECE] mt-8">
+          <Card className="mt-8 border-[#CECECE] shadow-lg">
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle className="text-gray-900 flex items-center">
+                <CardTitle className="flex items-center text-gray-900">
                   <Music className="mr-2 h-5 w-5" />
                   Generated Songs
                 </CardTitle>
                 <Button
                   onClick={() => setPlaylistSongs([...generatedPlaylist])}
-                  className="bg-white ring-1 ring-gray-900 text-gray-900 rounded-sm hover:bg-gray-200"
+                  className="rounded-sm bg-white text-gray-900 ring-1 ring-gray-900 hover:bg-gray-200"
                   disabled={playlistSongs.length === generatedPlaylist.length}
                 >
                   <Plus className="mr-1 h-4 w-4 text-gray-900" />
@@ -119,17 +120,25 @@ export default function MoodSync() {
               {generatedPlaylist.map((song) => (
                 <div
                   key={song.id}
-                  className="flex justify-between py-3 px-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors border border-gray-200"
+                  className="flex justify-between rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 transition-colors hover:bg-gray-100"
                 >
-                  <div className="size-16 bg-gray-300 rounded-md mr-4"></div>
+                  <div className="group relative mr-4 size-16 rounded-md bg-gray-300">
+                    <img
+                      src="https://placehold.co/600x400"
+                      className="rounded-lg"
+                    />
+                    <button className="absolute inset-0 m-auto hidden h-8 w-8 items-center justify-center rounded-full bg-black/70 text-white group-hover:flex">
+                      <img src={playIcon} className="ml-0.5 h-3 w-3" />
+                    </button>
+                  </div>
                   <div className="flex-1">
-                    <h4 className="text-gray-900 font-medium">{song.title}</h4>
-                    <p className="text-gray-600 text-sm">{song.artist}</p>
+                    <h4 className="font-medium text-gray-900">{song.title}</h4>
+                    <p className="text-sm text-gray-600">{song.artist}</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <div
                       onClick={() => removeSongFromPlaylist(song.id)}
-                      className="ring-1 p-1.5 rounded-[0.2rem] ring-gray-900 bg-gray-50 text-gray-900"
+                      className="rounded-[0.2rem] bg-gray-50 p-1 text-gray-900 ring-1 ring-gray-900 hover:text-red-500 hover:ring-red-500"
                     >
                       <Trash2 size={20} strokeWidth={1.5} />
                     </div>
