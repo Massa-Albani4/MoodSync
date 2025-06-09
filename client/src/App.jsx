@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Play, Plus, X, Music } from "lucide-react";
+import { Play, Plus, Trash2, Music } from "lucide-react";
 import { sampleSongs } from "./songs";
 import chillIcon from "./assets/chill.png";
 import energeticIcon from "./assets/energetic.png";
@@ -20,6 +20,8 @@ const moods = [
   { id: "witty", label: "Witty", emoji: wittyIcon },
   { id: "mysterious", label: "Mysterious", emoji: mysteriousIcon },
 ];
+
+// considering i have high iq and high functioning aspd and adhd which one would i enjoy more and be more happy with long-term and provide me with more intellictual stimulation fullstack or cypersecurity
 
 export default function MoodSync() {
   const [selectedMood, setSelectedMood] = useState("");
@@ -67,7 +69,7 @@ export default function MoodSync() {
                   variant={selectedMood === mood.id ? "default" : "outline"}
                   className={`h-20 flex flex-col items-center justify-center gap-2 text-gray-900 font-semibold transition-all duration-200 hover:scale-105 ${
                     selectedMood === mood.id
-                      ? "bg-white border-[#FF8661] ring-1 ring-[#FF8661] scale-105"
+                      ? "bg-white border-[#FF8661] ring-2 ring-[#FF8661] scale-105"
                       : "bg-white hover:bg-gray-50 border-[#b8b8b8]"
                   }`}
                 >
@@ -109,7 +111,7 @@ export default function MoodSync() {
                   disabled={playlistSongs.length === generatedPlaylist.length}
                 >
                   <Plus className="mr-2 h-4 w-4" />
-                  Add All Songs
+                  Add a song
                 </Button>
               </div>
             </CardHeader>
@@ -117,29 +119,20 @@ export default function MoodSync() {
               {generatedPlaylist.map((song) => (
                 <div
                   key={song.id}
-                  className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors border border-gray-200"
+                  className="flex justify-between py-3 px-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors border border-gray-200"
                 >
+                  <div className="size-16 bg-gray-300 rounded-md mr-4"></div>
                   <div className="flex-1">
                     <h4 className="text-gray-900 font-medium">{song.title}</h4>
                     <p className="text-gray-600 text-sm">{song.artist}</p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Button
-                      size="sm"
-                      onClick={() => window.open(song.spotifyUrl, "_blank")}
-                      className="bg-green-600 hover:bg-green-700 text-white"
+                    <div
+                      onClick={() => removeSongFromPlaylist(song.id)}
+                      className="ring-1 p-1.5 rounded-[0.2rem] ring-gray-900 bg-gray-50 text-gray-900"
                     >
-                      <Play className="h-4 w-4" />
-                    </Button>
-                    {playlistSongs.some((s) => s.id === song.id) && (
-                      <Button
-                        size="sm"
-                        onClick={() => removeSongFromPlaylist(song.id)}
-                        className="bg-red-600 hover:bg-red-700 text-white"
-                      >
-                        <X className="h-4 w-4" />
-                      </Button>
-                    )}
+                      <Trash2 size={20} strokeWidth={1.5} />
+                    </div>
                   </div>
                 </div>
               ))}
