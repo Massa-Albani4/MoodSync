@@ -102,9 +102,9 @@ export default function MoodSync() {
           <Card className="mt-8 border-[#CECECE] shadow-lg">
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle className="flex items-center text-gray-900">
-                  <Music className="mr-2 h-5 w-5" />
-                  Generated Songs
+                <CardTitle className="flex items-center text-xl text-gray-900">
+                  <Music className="mt-0.5 mr-3 h-5 w-5" />
+                  My playlist
                 </CardTitle>
                 <Button
                   onClick={() => setPlaylistSongs([...generatedPlaylist])}
