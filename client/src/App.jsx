@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Plus, Trash2, Music } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Plus, Trash2, Music, Pencil } from "lucide-react";
 import { sampleSongs } from "./songs";
 import chillIcon from "./assets/chill.png";
 import energeticIcon from "./assets/energetic.png";
@@ -22,12 +23,12 @@ const moods = [
   { id: "mysterious", label: "Mysterious", emoji: mysteriousIcon },
 ];
 
-// considering i have high iq and high functioning aspd and adhd which one would i enjoy more and be more happy with long-term and provide me with more intellictual stimulation fullstack or cypersecurity
-
 export default function MoodSync() {
   const [selectedMood, setSelectedMood] = useState("");
   const [generatedPlaylist, setGeneratedPlaylist] = useState([]);
   const [playlistSongs, setPlaylistSongs] = useState([]);
+  const [playlistName, setPlaylistName] = useState("");
+  const inputRef = useRef(null);
 
   const generatePlaylist = () => {
     if (!selectedMood) return;
@@ -91,20 +92,26 @@ export default function MoodSync() {
         <div className="flex justify-center">
           <Button
             onClick={generatePlaylist}
-            className="rounded-md bg-[hsla(333,_100%,_53%,_1)] bg-[linear-gradient(90deg,_hsla(333,_100%,_53%,_1)_0%,_hsla(33,_94%,_57%,_1)_100%)] px-6 py-5 text-lg text-white filter"
+            className="rounded-md bg-[#ff0f7b] bg-[linear-gradient(90deg,_hsla(333,_100%,_53%,_1)_0%,_hsla(33,_94%,_57%,_1)_100%)] px-6 py-5 text-lg text-white filter"
           >
             <Music className="mr-1 h-5 w-5" />
             Generate Playlist
           </Button>
         </div>
-
         {generatedPlaylist.length > 0 && (
           <Card className="mt-8 border-[#CECECE] shadow-lg">
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle className="flex items-center text-xl text-gray-900">
-                  <Music className="mt-0.5 mr-3 h-5 w-5" />
-                  My playlist
+                <CardTitle className="flex items-center text-gray-900 hover:text-[#FF7D55]">
+                  <Input
+                    ref={inputRef}
+                    type="text"
+                    className="rounded border-none p-0 !text-xl text-gray-900 shadow-none placeholder:text-xl placeholder:text-gray-900 hover:placeholder:text-[#FF7D55] focus-visible:ring-0"
+                    value={playlistName}
+                    onChange={(e) => setPlaylistName(e.target.value)}
+                    placeholder="My playlist"
+                  />
+                  <Pencil className="mt-1" size={16} />
                 </CardTitle>
                 <Button
                   onClick={() => setPlaylistSongs([...generatedPlaylist])}
