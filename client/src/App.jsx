@@ -89,7 +89,7 @@ export default function MoodSync() {
         <div className="flex justify-center">
           <Button
             onClick={generatePlaylist}
-            className="rounded-md bg-[#ff0f7b] bg-[linear-gradient(90deg,_hsla(333,_100%,_53%,_1)_0%,_hsla(33,_94%,_57%,_1)_100%)] px-6 py-5 text-lg text-white filter"
+            className="group rounded-md bg-[#ff0f7b] bg-[linear-gradient(90deg,_hsla(333,_100%,_53%,_1)_0%,_hsla(33,_94%,_57%,_1)_100%)] px-6 py-5 text-lg text-white filter transition-all duration-500 hover:scale-[1.03] hover:bg-[linear-gradient(45deg,_hsla(333,_100%,_53%,_1)_0%,_hsla(33,_94%,_57%,_1)_100%)] hover:bg-[linear-gradient(90deg,_hsla(333,_100%,_53%,_1)_0%,_hsla(33,_94%,_57%,_1)_50%,_hsla(273,_100%,_60%,_1)_100%)] hover:bg-[length:200%_100%] hover:shadow-[0_0_25px_5px_rgba(255,15,123,0.4)]"
           >
             <Music className="mr-1 h-5 w-5" />
             Generate Playlist
