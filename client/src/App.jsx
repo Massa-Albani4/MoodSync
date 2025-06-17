@@ -27,9 +27,6 @@ export default function MoodSync() {
   const [selectedMood, setSelectedMood] = useState("");
   const [generatedPlaylist, setGeneratedPlaylist] = useState([]);
   const [playlistSongs, setPlaylistSongs] = useState([]);
-  const [playlistName, setPlaylistName] = useState("");
-  const inputRef = useRef(null);
-
   const generatePlaylist = () => {
     if (!selectedMood) return;
 
@@ -102,16 +99,11 @@ export default function MoodSync() {
           <Card className="mt-8 border-[#CECECE] shadow-lg">
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle className="flex items-center text-gray-900 hover:text-[#FF7D55]">
-                  <Input
-                    ref={inputRef}
-                    type="text"
-                    className="rounded border-none p-0 !text-xl text-gray-900 shadow-none placeholder:text-xl placeholder:text-gray-900 hover:placeholder:text-[#FF7D55] focus-visible:ring-0"
-                    value={playlistName}
-                    onChange={(e) => setPlaylistName(e.target.value)}
-                    placeholder="My playlist"
-                  />
-                  <Pencil className="mt-1" size={16} />
+                <CardTitle className="flex items-center text-gray-900">
+                  <Music className="mr-3 h-5 w-5" />
+                  <p className="rounded border-none p-0 !text-xl text-gray-900 shadow-none placeholder:text-xl placeholder:text-gray-900 hover:placeholder:text-[#FF7D55] focus-visible:ring-0">
+                    {selectedMood} Playlist
+                  </p>
                 </CardTitle>
                 <Button
                   onClick={() => setPlaylistSongs([...generatedPlaylist])}
