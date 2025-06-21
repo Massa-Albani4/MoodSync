@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -64,10 +64,10 @@ export default function MoodSync() {
               {moods.map((mood) => (
                 <Button
                   key={mood.id}
-                  onClick={() => setSelectedMood(mood.id)}
-                  variant={selectedMood === mood.id ? "default" : "outline"}
+                  onClick={() => setSelectedMood(mood.label)}
+                  variant={selectedMood === mood.label ? "default" : "outline"}
                   className={`flex h-20 flex-col items-center justify-center gap-2 font-semibold text-gray-900 transition-all duration-200 hover:scale-105 ${
-                    selectedMood === mood.id
+                    selectedMood === mood.label
                       ? "scale-105 border-[#FF8661] bg-white ring-2 ring-[#FF8661]"
                       : "border-[#b8b8b8] bg-white hover:bg-gray-50"
                   }`}
@@ -100,10 +100,12 @@ export default function MoodSync() {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle className="flex items-center text-gray-900">
-                  <Music className="mr-3 h-5 w-5" />
-                  <p className="rounded border-none p-0 !text-xl text-gray-900 shadow-none placeholder:text-xl placeholder:text-gray-900 hover:placeholder:text-[#FF7D55] focus-visible:ring-0">
-                    {selectedMood} Playlist
+                  <p className="rounded border-none p-0 !text-xl text-gray-900 shadow-none ml-1 placeholder:text-xl placeholder:text-gray-900 hover:placeholder:text-[#FF7D55] focus-visible:ring-0">
+                    {selectedMood} playlist
                   </p>
+                  <Button className="rounded w-7 mt-0.5 h-7 ml-3 bg-white hover:bg-gray-900 text-gray-900 hover:text-white border-gray-900 border">
+                    <Pencil />
+                  </Button>                
                 </CardTitle>
                 <Button
                   onClick={() => setPlaylistSongs([...generatedPlaylist])}

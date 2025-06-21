@@ -1,5 +1,5 @@
 export const sampleSongs = {
-  happy: [
+  Happy: [
     {
       id: "1",
       title: "placeholder",
@@ -36,7 +36,7 @@ export const sampleSongs = {
       albumCover: "",
     },
   ],
-  sad: [
+  Sad: [
     {
       id: "6",
       title: "placeholder",
@@ -73,7 +73,7 @@ export const sampleSongs = {
       albumCover: "",
     },
   ],
-  energetic: [
+  Energetic: [
     {
       id: "11",
       title: "placeholder",
@@ -110,7 +110,7 @@ export const sampleSongs = {
       albumCover: "",
     },
   ],
-  chill: [
+  Chill: [
     {
       id: "16",
       title: "placeholder",
@@ -147,7 +147,7 @@ export const sampleSongs = {
       albumCover: "",
     },
   ],
-  witty: [
+  Witty: [
     {
       id: "21",
       title: "placeholder",
@@ -184,7 +184,7 @@ export const sampleSongs = {
       albumCover: "",
     },
   ],
-  mysterious: [
+  Mysterious: [
     {
       id: "26",
       title: "placeholder",
